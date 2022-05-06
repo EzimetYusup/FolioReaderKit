@@ -37,12 +37,12 @@ class FolioReaderPageIndicator: UIView {
         layer.shouldRasterize = true
 
         pagesLabel = UILabel(frame: CGRect.zero)
-        pagesLabel.font = UIFont(name: "Avenir-Light", size: 10)!
+        pagesLabel.font = UIFont(name: "UKIJTuzKitab", size: 10)!
         pagesLabel.textAlignment = NSTextAlignment.right
         addSubview(pagesLabel)
 
         minutesLabel = UILabel(frame: CGRect.zero)
-        minutesLabel.font = UIFont(name: "Avenir-Light", size: 10)!
+        minutesLabel.font = UIFont(name: "UKIJTuzKitab", size: 10)!
         minutesLabel.textAlignment = NSTextAlignment.right
         //        minutesLabel.alpha = 0
         addSubview(minutesLabel)
@@ -92,18 +92,17 @@ class FolioReaderPageIndicator: UIView {
         if pagesRemaining == 1 {
             pagesLabel.text = " " + self.readerConfig.localizedReaderOnePageLeft
         } else {
-            pagesLabel.text = " \(pagesRemaining) " + self.readerConfig.localizedReaderManyPagesLeft
+            pagesLabel.text = "  \(pagesRemaining)  " + self.readerConfig.localizedReaderManyPagesLeft
         }
 
         let minutesRemaining = Int(ceil(CGFloat((pagesRemaining * totalMinutes)/totalPages)))
         if minutesRemaining > 1 {
-            minutesLabel.text = "\(minutesRemaining) " + self.readerConfig.localizedReaderManyMinutes+" ·"
+            minutesLabel.text = " \(minutesRemaining)  " + self.readerConfig.localizedReaderManyMinutes+" ·"
         } else if minutesRemaining == 1 {
             minutesLabel.text = self.readerConfig.localizedReaderOneMinute+" ·"
         } else {
             minutesLabel.text = self.readerConfig.localizedReaderLessThanOneMinute+" ·"
         }
-        
         reloadView(updateShadow: false)
     }
 }

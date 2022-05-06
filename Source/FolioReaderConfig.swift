@@ -194,20 +194,20 @@ open class FolioReaderConfig: NSObject {
 
     /// Localizes Highlight date format. This is a `dateFormat` from `NSDateFormatter`, so be careful 🤔
     open var localizedHighlightsDateFormat = "MMM dd, YYYY | HH:mm"
-    open var localizedHighlightMenu = NSLocalizedString("Highlight", comment: "")
+    open var localizedHighlightMenu = NSLocalizedString("بەلگە ئۇرۇش", comment: "")
     open var localizedDefineMenu = NSLocalizedString("Define", comment: "")
     open var localizedPlayMenu = NSLocalizedString("Play", comment: "")
     open var localizedPauseMenu = NSLocalizedString("Pause", comment: "")
-    open var localizedFontMenuNight = NSLocalizedString("Night", comment: "")
+    open var localizedFontMenuNight = NSLocalizedString("كېچە", comment: "")
     open var localizedPlayerMenuStyle = NSLocalizedString("Style", comment: "")
-    open var localizedFontMenuDay = NSLocalizedString("Day", comment: "")
-    open var localizedLayoutHorizontal = NSLocalizedString("Horizontal", comment: "")
-    open var localizedLayoutVertical = NSLocalizedString("Vertical", comment: "")
-    open var localizedReaderOnePageLeft = NSLocalizedString("1 page left", comment: "")
-    open var localizedReaderManyPagesLeft = NSLocalizedString("pages left", comment: "")
-    open var localizedReaderManyMinutes = NSLocalizedString("minutes", comment: "")
-    open var localizedReaderOneMinute = NSLocalizedString("1 minute", comment: "")
-    open var localizedReaderLessThanOneMinute = NSLocalizedString("Less than a minute", comment: "")
+    open var localizedFontMenuDay = NSLocalizedString("كۈندۈز", comment: "")
+    open var localizedLayoutHorizontal = NSLocalizedString("گورزىنتال", comment: "")
+    open var localizedLayoutVertical = NSLocalizedString("ۋېرتىكال", comment: "")
+    open var localizedReaderOnePageLeft = NSLocalizedString("1 بەت قالدى", comment: "")
+    open var localizedReaderManyPagesLeft = NSLocalizedString("بەت قالدى", comment: "")
+    open var localizedReaderManyMinutes = NSLocalizedString("مىنۇت", comment: "")
+    open var localizedReaderOneMinute = NSLocalizedString("1 مىنۇت", comment: "")
+    open var localizedReaderLessThanOneMinute = NSLocalizedString("بىر مىنۇتتىن مۇ ئاز", comment: "")
     open var localizedShareWebLink: URL? = nil
     open var localizedShareChapterSubject = NSLocalizedString("Check out this chapter from", comment: "")
     open var localizedShareHighlightSubject = NSLocalizedString("Notes from", comment: "")
@@ -219,8 +219,8 @@ open class FolioReaderConfig: NSObject {
     open var localizedTakePhoto = NSLocalizedString("Take Photo", comment: "")
     open var localizedShareImageQuote = NSLocalizedString("Share image quote", comment: "")
     open var localizedShareTextQuote = NSLocalizedString("Share text quote", comment: "")
-    open var localizedSave = NSLocalizedString("Save", comment: "")
-    open var localizedHighlightNote = NSLocalizedString("Note", comment: "")
+    open var localizedSave = NSLocalizedString("ساقلاش", comment: "")
+    open var localizedHighlightNote = NSLocalizedString("خاتىرە قالدۇرۇش", comment: "")
 
     public convenience init(withIdentifier identifier: String) {
         self.init()

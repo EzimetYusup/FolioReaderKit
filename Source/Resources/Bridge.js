@@ -54,6 +54,8 @@ function setFontName(cls) {
     removeClass(elm, "lato");
     removeClass(elm, "lora");
     removeClass(elm, "raleway");
+    removeClass(elm, "UKIJBasma");
+    removeClass(elm, "UKIJTuzKitab");
     addClass(elm, cls);
 }
 

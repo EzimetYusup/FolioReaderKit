@@ -107,7 +107,7 @@ class FREpubParser: NSObject, SSZipArchiveDelegate {
         }
 
         // Skip from backup this folder
-        try addSkipBackupAttributeToItemAtURL(URL(fileURLWithPath: bookBasePath, isDirectory: true))
+//        try? addSkipBackupAttributeToItemAtURL(URL(fileURLWithPath: bookBasePath, isDirectory: true))
 
         book.name = bookName
         try readContainer(with: bookBasePath)

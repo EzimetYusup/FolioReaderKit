@@ -9,18 +9,23 @@
 import UIKit
 
 public enum FolioReaderFont: Int {
-    case andada = 0
-    case lato
-    case lora
-    case raleway
+//    case andada = 0
+//    case lato
+//    case lora
+//    case raleway
+    case UKIJBasma = 0
+    case UKIJTuzKitab
 
     public static func folioReaderFont(fontName: String) -> FolioReaderFont? {
         var font: FolioReaderFont?
         switch fontName {
-        case "andada": font = .andada
-        case "lato": font = .lato
-        case "lora": font = .lora
-        case "raleway": font = .raleway
+
+//        case "andada": font = .andada
+//        case "lato": font = .lato
+//        case "lora": font = .lora
+//        case "raleway": font = .raleway
+        case "UKIJBasma": font = .UKIJBasma
+        case "UKIJTuzKitab": font = .UKIJTuzKitab
         default: break
         }
         return font
@@ -28,10 +33,12 @@ public enum FolioReaderFont: Int {
 
     public var cssIdentifier: String {
         switch self {
-        case .andada: return "andada"
-        case .lato: return "lato"
-        case .lora: return "lora"
-        case .raleway: return "raleway"
+        case .UKIJBasma: return "UKIJBasma"
+//        case .andada: return "andada"
+//        case .lato: return "lato"
+//        case .lora: return "lora"
+//        case .raleway: return "raleway"
+        case .UKIJTuzKitab: return "UKIJTuzKitab"
         }
     }
 }
@@ -131,7 +138,7 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
                                      separatorColour: self.readerConfig.nightModeSeparatorColor,
                                      separatorWidth: 1,
                                      segmentProperties:  [
-                                        keySegmentTitleFont: UIFont(name: "Avenir-Light", size: 17)!,
+                                        keySegmentTitleFont: UIFont(name: "UKIJTuzKitab", size: 17)!,
                                         keySegmentOnSelectionColour: UIColor.clear,
                                         keySegmentOffSelectionColour: UIColor.clear,
                                         keySegmentOnSelectionTextColour: selectedColor,
@@ -153,7 +160,8 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
 
         // Fonts adjust
         let fontNameHeight: CGFloat = self.readerConfig.canChangeFontStyle ? 55: 0
-        let fontName = SMSegmentView(frame: CGRect(x: 15, y: line.frame.height+line.frame.origin.y, width: view.frame.width-30, height: fontNameHeight),
+               let fontName = SMSegmentView(frame: CGRect(x: 15, y: line.frame.height+line.frame.origin.y, width: view.frame.width-30, height: fontNameHeight),
+//        let fontName = SMSegmentView(frame: CGRect(x: 15, y: line.frame.height+line.frame.origin.y, width: view.frame.width-30, height: 55),
                                      separatorColour: UIColor.clear,
                                      separatorWidth: 0,
                                      segmentProperties:  [
@@ -166,10 +174,14 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
         fontName.delegate = self
         fontName.tag = 2
 
-        fontName.addSegmentWithTitle("Andada", onSelectionImage: nil, offSelectionImage: nil)
-        fontName.addSegmentWithTitle("Lato", onSelectionImage: nil, offSelectionImage: nil)
-        fontName.addSegmentWithTitle("Lora", onSelectionImage: nil, offSelectionImage: nil)
-        fontName.addSegmentWithTitle("Raleway", onSelectionImage: nil, offSelectionImage: nil)
+
+//        fontName.addSegmentWithTitle("Andada", onSelectionImage: nil, offSelectionImage: nil)
+//        fontName.addSegmentWithTitle("Lato", onSelectionImage: nil, offSelectionImage: nil)
+//        fontName.addSegmentWithTitle("Lora", onSelectionImage: nil, offSelectionImage: nil)
+//        fontName.addSegmentWithTitle("Raleway", onSelectionImage: nil, offSelectionImage: nil)
+        fontName.addSegmentWithTitle("Basma", onSelectionImage: nil, offSelectionImage: nil)
+        fontName.addSegmentWithTitle("Kitab", onSelectionImage: nil, offSelectionImage: nil)
+
 
 //        fontName.segments[0].titleFont = UIFont(name: "Andada-Regular", size: 18)!
 //        fontName.segments[1].titleFont = UIFont(name: "Lato-Regular", size: 18)!
@@ -242,7 +254,7 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
                                             separatorColour: self.readerConfig.nightModeSeparatorColor,
                                             separatorWidth: 1,
                                             segmentProperties:  [
-                                                keySegmentTitleFont: UIFont(name: "Avenir-Light", size: 17)!,
+                                                keySegmentTitleFont: UIFont(name: "UKIJTuzKitab", size: 17)!,
                                                 keySegmentOnSelectionColour: UIColor.clear,
                                                 keySegmentOffSelectionColour: UIColor.clear,
                                                 keySegmentOnSelectionTextColour: selectedColor,
@@ -279,7 +291,7 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
             self.folioReader.nightMode = Bool(index == 1)
 
             UIView.animate(withDuration: 0.6, animations: {
-                self.menuView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : self.readerConfig.daysModeNavBackground)
+                   self.menuView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : self.readerConfig.daysModeNavBackground)
             })
 
         } else if segmentView.tag == 2 {

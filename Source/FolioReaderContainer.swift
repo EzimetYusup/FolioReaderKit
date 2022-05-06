@@ -81,7 +81,7 @@ open class FolioReaderContainer: UIViewController {
 
         // Register initial defaults
         self.folioReader.register(defaults: [
-            kCurrentFontFamily: FolioReaderFont.andada.rawValue,
+            kCurrentFontFamily: FolioReaderFont.UKIJTuzKitab.rawValue,
             kNightMode: false,
             kCurrentFontSize: 2,
             kCurrentAudioRate: 1,

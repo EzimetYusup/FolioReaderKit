@@ -22,7 +22,8 @@ class FolioReaderChapterListCell: UITableViewCell {
         self.indexLabel?.lineBreakMode = .byWordWrapping
         self.indexLabel?.numberOfLines = 0
         self.indexLabel?.translatesAutoresizingMaskIntoConstraints = false
-        self.indexLabel?.font = UIFont(name: "Avenir-Light", size: 17)
+        self.indexLabel?.font = UIFont(name: "UKIJTuzKitab", size: 17)
+        self.indexLabel?.textAlignment = .center
         self.indexLabel?.textColor = readerConfig.menuTextColor
 
         if let label = self.indexLabel {
