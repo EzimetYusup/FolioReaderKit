@@ -10,9 +10,9 @@ let package = Package(
     
     dependencies: [
         .package(url: "https://github.com/ZipArchive/ZipArchive.git", .exact("2.2.5")),
-        .package(url: "https://github.com/cxa/MenuItemKit.git", .exact("3.1.3")),
+        .package(url: "https://github.com/cxa/MenuItemKit.git", .exact("3.0.0")),
         .package(url: "https://github.com/zoonooz/ZFDragableModalTransition.git", .exact("0.6.5")),
-        .package(url: "https://github.com/tadija/AEXML.git", .exact("4.4.0")),
+        .package(url: "https://github.com/tadija/AEXML.git", .exact("4.3.3")),
         .package(url: "https://github.com/ArtSabintsev/FontBlaster.git", .exact("5.1.0")),
         .package(name: "Realm", url: "https://github.com/realm/realm-cocoa.git", .exact("3.17.0"))
     ],
