@@ -11,7 +11,7 @@ let package = Package(
     ],
     
     dependencies: [
-        .package(url: "https://github.com/ZipArchive/ZipArchive.git", .exact("2.4.2")),
+        .package(url: "https://github.com/ZipArchive/ZipArchive.git", .branch("master")),
         .package(url: "https://github.com/cxa/MenuItemKit.git", .exact("3.0.0")),
         .package(url: "https://github.com/zoonooz/ZFDragableModalTransition.git", .exact("0.6.5")),
         .package(url: "https://github.com/tadija/AEXML.git", .exact("4.3.3")),
