@@ -3,7 +3,9 @@ import PackageDescription
 
 let package = Package(
     name: "FolioReaderKit",
-    
+    platforms: [
+                .iOS(.v12),
+        ],
     products: [
         .library(name: "FolioReaderKit", targets: ["FolioReaderKit"]),
     ],
@@ -18,7 +20,15 @@ let package = Package(
     ],
     
     targets: [
-        .target(name: "FolioReaderKit", dependencies: ["AEXML", "ZipArchive", "FontBlaster", "MenuItemKit", "ZFDragableModalTransition", .product(name: "RealmSwift", package: "Realm")], path: "Source"),
+        .target(name: "FolioReaderKit", dependencies: ["AEXML", "ZipArchive", "FontBlaster", "MenuItemKit", "ZFDragableModalTransition", .product(name: "RealmSwift", package: "Realm")],
+                path: "Source",
+                exclude: ["Info.plist"],
+                resources: [
+                                .process("Resources/Bridge.js"),
+                                .process("Resources/Style.css"),
+                                .process("Resources/Fonts")
+                            ]
+        ),
         .testTarget(name: "FolioReaderKitTests", dependencies: ["FolioReaderKit"]),
     ]
 )
