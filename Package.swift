@@ -18,7 +18,7 @@ let package = Package(
     ],
     
     targets: [
-        .target(name: "FolioReaderKit", dependencies: []),
+        .target(name: "FolioReaderKit", dependencies: [], path: "Source"),
         .testTarget(name: "FolioReaderKitTests", dependencies: ["FolioReaderKit"]),
     ]
 )
