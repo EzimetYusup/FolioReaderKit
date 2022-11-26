@@ -18,7 +18,7 @@ let package = Package(
     ],
     
     targets: [
-        .target(name: "FolioReaderKit", dependencies: [], path: "Source"),
+        .target(name: "FolioReaderKit", dependencies: ["AEXML", "ZipArchive", "FontBlaster", "MenuItemKit", "ZFDragableModalTransition", .product(name: "RealmSwift", package: "Realm")], path: "Source"),
         .testTarget(name: "FolioReaderKitTests", dependencies: ["FolioReaderKit"]),
     ]
 )
