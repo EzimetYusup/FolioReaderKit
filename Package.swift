@@ -14,11 +14,11 @@ let package = Package(
         .package(url: "https://github.com/zoonooz/ZFDragableModalTransition.git", .exact("0.6.0")),
         .package(url: "https://github.com/tadija/AEXML.git", .exact("4.4.0")),
         .package(url: "https://github.com/ArtSabintsev/FontBlaster.git", .exact("4.1.0")),
-        .package(name: "Realm", url: "https://github.com/realm/realm-cocoa.git", .exact("10.7.7"))
+        .package(name: "Realm", url: "https://github.com/realm/realm-cocoa.git", .exact("3.17.0"))
     ],
     
     targets: [
-        .target(name: "FolioReaderKit", dependencies: ["AEXML", "ZipArchive", "FontBlaster", "MenuItemKit", "ZFDragableModalTransition", "Realm"], path: "Source"),
+        .target(name: "FolioReaderKit", dependencies: ["AEXML", "ZipArchive", "FontBlaster", "MenuItemKit", "ZFDragableModalTransition", .product(name: "RealmSwift", package: "Realm")], path: "Source"),
         .testTarget(name: "FolioReaderKitTests", dependencies: ["FolioReaderKit"]),
     ]
 )
