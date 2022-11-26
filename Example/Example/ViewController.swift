@@ -29,7 +29,10 @@ class ViewController: UIViewController {
         let config = FolioReaderConfig(withIdentifier: epub.readerIdentifier)
         config.shouldHideNavigationOnTap = epub.shouldHideNavigationOnTap
         config.scrollDirection = epub.scrollDirection
-
+        config.hidePageIndicator = true
+        config.scrollDirection = .vertical
+        config.canChangeScrollDirection = false
+        config.canChangeFontStyle = true
         // See more at FolioReaderConfig.swift
 //        config.canChangeScrollDirection = false
 //        config.enableTTS = false
@@ -43,7 +46,6 @@ class ViewController: UIViewController {
 //        config.hidePageIndicator = true
 //        config.realmConfiguration = Realm.Configuration(fileURL: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("highlights.realm"))
 
-        // Custom sharing quote background
         config.quoteCustomBackgrounds = []
         if let image = UIImage(named: "demo-bg") {
             let customImageQuote = QuoteImage(withImage: image, alpha: 0.6, backgroundColor: UIColor.black)

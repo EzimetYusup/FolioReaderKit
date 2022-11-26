@@ -26,8 +26,6 @@ open class FolioReaderContainer: UIViewController {
     public var readerConfig: FolioReaderConfig
     public var folioReader: FolioReader
 
-    fileprivate var errorOnLoad = false
-
     // MARK: - Init
 
     /// Init a Folio Reader Container
@@ -135,7 +133,7 @@ open class FolioReaderContainer: UIViewController {
             self.centerNavigationController = UINavigationController(rootViewController: rootViewController)
         }
 
-        self.centerNavigationController?.setNavigationBarHidden(self.readerConfig.shouldHideNavigationOnTap, animated: false)
+        centerNavigationController?.setNavigationBarHidden(readerConfig.shouldHideNavigationOnTap, animated: false)
         if let _centerNavigationController = self.centerNavigationController {
             self.view.addSubview(_centerNavigationController.view)
             self.addChild(_centerNavigationController)
@@ -151,39 +149,33 @@ open class FolioReaderContainer: UIViewController {
         // Read async book
         guard (self.epubPath.isEmpty == false) else {
             print("Epub path is nil.")
-            self.errorOnLoad = true
+            self.folioReader.delegate?.folioReader?(self.folioReader, error: NSError(domain:"Epub path is nil.", code:1, userInfo:nil))
             return
         }
 
-        DispatchQueue.global(qos: .userInitiated).async {
-
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let weakSelf = self else { return }
             do {
-                let parsedBook = try FREpubParser().readEpub(epubPath: self.epubPath, removeEpub: self.shouldRemoveEpub, unzipPath: self.unzipPath)
-                self.book = parsedBook
-                self.folioReader.isReaderOpen = true
+                let parsedBook = try FREpubParser().readEpub(epubPath: weakSelf.epubPath, removeEpub: weakSelf.shouldRemoveEpub, unzipPath: weakSelf.unzipPath)
+                weakSelf.book = parsedBook
+                weakSelf.folioReader.isReaderOpen = true
 
                 // Reload data
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
+                    guard let weakSelf = self else { return }
                     // Add audio player if needed
-                    if self.book.hasAudio || self.readerConfig.enableTTS {
-                        self.addAudioPlayer()
+                    if weakSelf.book.hasAudio || weakSelf.readerConfig.enableTTS {
+                        weakSelf.addAudioPlayer()
                     }
-                    self.centerViewController?.reloadData()
-                    self.folioReader.isReaderReady = true
-                    self.folioReader.delegate?.folioReader?(self.folioReader, didFinishedLoading: self.book)
+                    weakSelf.centerViewController?.reloadData()
+                    weakSelf.folioReader.isReaderReady = true
+                    weakSelf.folioReader.delegate?.folioReader?(weakSelf.folioReader, didFinishedLoading: weakSelf.book)
                 }
             } catch {
-                self.errorOnLoad = true
-                self.alert(message: error.localizedDescription)
+                DispatchQueue.main.async { [weak self] in
+                    weakSelf.folioReader.delegate?.folioReader?(weakSelf.folioReader, error: error)
+                }
             }
-        }
-    }
-
-    override open func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if (self.errorOnLoad == true) {
-            self.dismiss()
         }
     }
 
@@ -207,21 +199,5 @@ open class FolioReaderContainer: UIViewController {
 
     override open var preferredStatusBarStyle: UIStatusBarStyle {
         return self.folioReader.isNight(.lightContent, .default)
-    }
-}
-
-extension FolioReaderContainer {
-    func alert(message: String) {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: message,
-            preferredStyle: UIAlertController.Style.alert
-        )
-        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel) { [weak self]
-            (result : UIAlertAction) -> Void in
-            self?.dismiss()
-        }
-        alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
     }
 }

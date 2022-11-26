@@ -37,13 +37,13 @@ class PageViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         segmentedControl = UISegmentedControl(items: segmentedControlItems)
         segmentedControl.addTarget(self, action: #selector(PageViewController.didSwitchMenu(_:)), for: UIControl.Event.valueChanged)
         segmentedControl.selectedSegmentIndex = index
         segmentedControl.setWidth(100, forSegmentAt: 0)
         segmentedControl.setWidth(100, forSegmentAt: 1)
-        self.navigationItem.titleView = segmentedControl
+        navigationItem.titleView = segmentedControl
 
         viewList = [viewControllerOne, viewControllerTwo]
 
@@ -52,7 +52,6 @@ class PageViewController: UIPageViewController {
 
         self.delegate = self
         self.dataSource = self
-
         self.view.backgroundColor = UIColor.white
         self.setViewControllers([viewList[index]], direction: .forward, animated: false, completion: nil)
 
@@ -104,7 +103,7 @@ extension PageViewController: UIPageViewControllerDelegate {
 
         if finished && completed {
             let viewController = pageViewController.viewControllers?.last
-            segmentedControl.selectedSegmentIndex = viewList.index(of: viewController!)!
+            segmentedControl.selectedSegmentIndex = viewList.firstIndex(of: viewController!)!
         }
     }
 }
@@ -115,7 +114,7 @@ extension PageViewController: UIPageViewControllerDataSource {
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 
-        let index = viewList.index(of: viewController)!
+        let index = viewList.firstIndex(of: viewController)!
         if index == viewList.count - 1 {
             return nil
         }
@@ -126,7 +125,7 @@ extension PageViewController: UIPageViewControllerDataSource {
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
-        let index = viewList.index(of: viewController)!
+        let index = viewList.firstIndex(of: viewController)!
         if index == 0 {
             return nil
         }
